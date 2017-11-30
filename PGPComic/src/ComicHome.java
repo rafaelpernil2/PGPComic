@@ -34,14 +34,6 @@ public class ComicHome {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
-		// try {
-		// return (SessionFactory) new
-		// InitialContext().lookup("SessionFactory");
-		// } catch (Exception e) {
-		// log.error("Could not locate SessionFactory in JNDI", e);
-		// throw new IllegalStateException("Could not locate SessionFactory in
-		// JNDI");
-		// }
 	}
 
 	public void persist(Comic transientInstance) {
@@ -51,7 +43,6 @@ public class ComicHome {
 			Transaction trans = session.beginTransaction();
 			session.persist(transientInstance);
 			trans.commit();
-
 			log.debug("persist successful");
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
