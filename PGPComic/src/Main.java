@@ -1,6 +1,3 @@
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 

@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Example;
 
 /**
  * Home object for domain model class Comic.
@@ -125,13 +124,14 @@ public class ComicHome {
 			throw re;
 		}
 	}
-
-	public List findByExample(Comic instance) {
+	// Ehto pa qué?
+	public List<?> findByExample(Comic instance) {
 		log.debug("finding Comic instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			List results = session.createCriteria("Comic").add(Example.create(instance)).list();
+			List<?> results = session.getCriteriaBuilder().createQuery(Comic.class).getOrderList();
+//			List results = session.createCriteria("Comic").add(Example.create(instance)).list();
 			trans.commit();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
