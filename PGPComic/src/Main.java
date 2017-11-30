@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.commons.io.IOUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 /*
@@ -31,6 +37,24 @@ public class Main {
 		Serie superman = new Serie(1, "Superman", "Superheroes"); // Importante crear primero la serie
 		serieManagement.attachClean(superman); // Y actualizar la persistencia
 		Comic c = new Comic(cId, superman, "Superheroes"); // Luego creamos el comic
+		
+		
+		// Subir fotos
+		
+		FileInputStream foto = null;
+		try {
+			foto = new FileInputStream(new File ("foto.png"));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} 
+		byte[] blob=null;
+		try {
+			blob = IOUtils.toByteArray(foto); // Pasa la foto a array de bytes
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		c.setFoto(blob); // Añadir fotos
 		comicManagement.attachClean(c); // Y actualizamos la persistencia
 		factory.getCurrentSession().close();
 		factory.close(); // Cerramos la factory
