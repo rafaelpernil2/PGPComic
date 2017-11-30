@@ -1,5 +1,4 @@
-// default package
-// Generated 28-nov-2017 17:59:18 by Hibernate Tools 5.2.3.Final
+
 // Fixed by Rafael Pernil Bronchalo
 
 import java.util.List;
@@ -124,13 +123,15 @@ public class ComicHome {
 			throw re;
 		}
 	}
+
 	public List<?> findByExample(Comic instance) {
 		log.debug("finding Comic instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
 			List<?> results = session.getCriteriaBuilder().createQuery(Comic.class).getOrderList();
-//			List results = session.createCriteria("Comic").add(Example.create(instance)).list();
+			// List results =
+			// session.createCriteria("Comic").add(Example.create(instance)).list();
 			trans.commit();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;

@@ -1,5 +1,5 @@
 // default package
-// Generated 30-nov-2017 16:13:38 by Hibernate Tools 5.2.3.Final
+// Generated 30-nov-2017 17:16:37 by Hibernate Tools 5.2.3.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +18,7 @@ public class Comic implements java.io.Serializable {
 	private String nombre;
 	private byte[] crossover;
 	private Integer isbn;
+	private byte[] foto;
 	private Set<Publicacion> publicacions = new HashSet<Publicacion>(0);
 
 	public Comic() {
@@ -29,12 +30,14 @@ public class Comic implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	public Comic(ComicId id, Serie serie, String nombre, byte[] crossover, Integer isbn, Set<Publicacion> publicacions) {
+	public Comic(ComicId id, Serie serie, String nombre, byte[] crossover, Integer isbn, byte[] foto,
+			Set<Publicacion> publicacions) {
 		this.id = id;
 		this.serie = serie;
 		this.nombre = nombre;
 		this.crossover = crossover;
 		this.isbn = isbn;
+		this.foto = foto;
 		this.publicacions = publicacions;
 	}
 
@@ -76,6 +79,14 @@ public class Comic implements java.io.Serializable {
 
 	public void setIsbn(Integer isbn) {
 		this.isbn = isbn;
+	}
+
+	public byte[] getFoto() {
+		return this.foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 
 	public Set<Publicacion> getPublicacions() {
