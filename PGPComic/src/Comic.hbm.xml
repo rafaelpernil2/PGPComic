@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 28-nov-2017 17:59:17 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-nov-2017 16:13:39 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="mydb" dynamic-insert="false" dynamic-update="false" mutable="true" name="Comic" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="comic">
-        <id name="idComic" type="int">
-            <column name="idComic"/>
-            <generator class="assigned"/>
-        </id>
+        <composite-id class="ComicId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="idComic" type="int">
+                <column name="idComic"/>
+            </key-property>
+            <key-property name="serieIdserie" type="int">
+                <column name="serie_idserie"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="Serie" embed-xml="true" fetch="select" insert="false" name="serie" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="serie_idserie" not-null="true"/>
+        </many-to-one>
         <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
             <column length="60" name="nombre" not-null="true" unique="true"/>
         </property>
@@ -15,5 +22,12 @@
         <property generated="never" lazy="false" name="isbn" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="isbn"/>
         </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="publicacions" optimistic-lock="true" sort="unsorted" table="publicacion">
+            <key on-delete="noaction">
+                <column name="comic_idComic" not-null="true"/>
+                <column name="comic_serie_idserie" not-null="true"/>
+            </key>
+            <one-to-many class="Publicacion" embed-xml="true" not-found="exception"/>
+        </set>
     </class>
 </hibernate-mapping>

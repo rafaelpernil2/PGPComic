@@ -12,14 +12,14 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 /**
- * Home object for domain model class Comic.
+ * Home object for domain model class Publicacion.
  * 
- * @see .Comic
+ * @see .Publicacion
  * @author Hibernate Tools
  */
-public class ComicHome {
+public class PublicacionHome {
 
-	private static final Log log = LogFactory.getLog(ComicHome.class);
+	private static final Log log = LogFactory.getLog(PublicacionHome.class);
 
 	private SessionFactory sessionFactory = getSessionFactory();
 
@@ -35,8 +35,8 @@ public class ComicHome {
 		}
 	}
 
-	public void persist(Comic transientInstance) {
-		log.debug("persisting Comic instance");
+	public void persist(Publicacion transientInstance) {
+		log.debug("persisting Publicacion instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
@@ -49,8 +49,8 @@ public class ComicHome {
 		}
 	}
 
-	public void attachDirty(Comic instance) {
-		log.debug("attaching dirty Comic instance");
+	public void attachDirty(Publicacion instance) {
+		log.debug("attaching dirty Publicacion instance");
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
@@ -63,8 +63,8 @@ public class ComicHome {
 		}
 	}
 
-	public void attachClean(Comic instance) {
-		log.debug("attaching clean Comic instance");
+	public void attachClean(Publicacion instance) {
+		log.debug("attaching clean Publicacion instance");
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
@@ -77,8 +77,8 @@ public class ComicHome {
 		}
 	}
 
-	public void delete(Comic persistentInstance) {
-		log.debug("deleting Comic instance");
+	public void delete(Publicacion persistentInstance) {
+		log.debug("deleting Publicacion instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
@@ -91,12 +91,12 @@ public class ComicHome {
 		}
 	}
 
-	public Comic merge(Comic detachedInstance) {
-		log.debug("merging Comic instance");
+	public Publicacion merge(Publicacion detachedInstance) {
+		log.debug("merging Publicacion instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			Comic result = (Comic) session.merge(detachedInstance);
+			Publicacion result = (Publicacion) session.merge(detachedInstance);
 			trans.commit();
 			log.debug("merge successful");
 			return result;
@@ -106,12 +106,12 @@ public class ComicHome {
 		}
 	}
 
-	public Comic findById(ComicId id) {
-		log.debug("getting Comic instance with id: " + id);
+	public Publicacion findById(PublicacionId id) {
+		log.debug("getting Publicacion instance with id: " + id);
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			Comic instance = (Comic) session.get("Comic", id);
+			Publicacion instance = (Publicacion) session.get("Publicacion", id);
 			trans.commit();
 			if (instance == null) {
 				log.debug("get successful, no instance found");
@@ -124,13 +124,13 @@ public class ComicHome {
 			throw re;
 		}
 	}
-	public List<?> findByExample(Comic instance) {
-		log.debug("finding Comic instance by example");
+	public List<?> findByExample(Publicacion instance) {
+		log.debug("finding Publicacion instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			List<?> results = session.getCriteriaBuilder().createQuery(Comic.class).getOrderList();
-//			List results = session.createCriteria("Comic").add(Example.create(instance)).list();
+			List<?> results = session.getCriteriaBuilder().createQuery(Publicacion.class).getOrderList();
+//			List results = session.createCriteria("Publicacion").add(Example.create(instance)).list();
 			trans.commit();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
