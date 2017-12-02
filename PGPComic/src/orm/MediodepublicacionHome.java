@@ -115,7 +115,7 @@ public class MediodepublicacionHome {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			Mediodepublicacion instance = (Mediodepublicacion) session.get("Mediodepublicacion", id);
+			Mediodepublicacion instance = (Mediodepublicacion) session.get(Mediodepublicacion.class, id);
 			trans.commit();
 			if (instance == null) {
 				log.debug("get successful, no instance found");

@@ -115,7 +115,7 @@ public class PublicacionHome {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			Publicacion instance = (Publicacion) session.get("Publicacion", id);
+			Publicacion instance = (Publicacion) session.get(Publicacion.class, id);
 			trans.commit();
 			if (instance == null) {
 				log.debug("get successful, no instance found");
