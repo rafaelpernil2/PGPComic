@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 02-dic-2017 23:31:59 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mydb" dynamic-insert="false" dynamic-update="false" mutable="true" name="orm.Mediodepublicacion" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="mediodepublicacion">
+        <id name="nombre" type="string">
+            <column length="60" name="nombre"/>
+            <generator class="assigned"/>
+        </id>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="publicacions" optimistic-lock="true" sort="unsorted" table="publicacion">
+            <key on-delete="noaction">
+                <column length="60" name="medioDePublicacion_nombre" not-null="true"/>
+            </key>
+            <one-to-many class="orm.Publicacion" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="false" lazy="true" mutable="true" name="series" optimistic-lock="true" sort="unsorted" table="serie_has_mediodepublicacion">
+            <key on-delete="noaction">
+                <column length="60" name="medioDePublicacion_nombre" not-null="true"/>
+            </key>
+            <many-to-many embed-xml="true" entity-name="orm.Serie" not-found="exception" unique="false">
+                <column name="serie_idserie" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
