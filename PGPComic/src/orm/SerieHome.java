@@ -1,6 +1,5 @@
 package orm;
 
-
 // Fixed by Rafael Pernil Bronchalo
 
 import java.util.List;
@@ -110,6 +109,47 @@ public class SerieHome {
 		}
 	}
 
+	public void deleteAll() {
+		log.debug("getting list of Series");
+		try {
+
+			List<Serie> list = this.list();
+			for (Serie Serie : list) {
+				this.delete(Serie);
+			}
+			if (this.list().isEmpty()) {
+				log.debug("everything deleted succesfully");
+			} else {
+				log.debug("there are some elements not deleted");
+			}
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+
+	public List<Serie> list() {
+		log.debug("getting list of Series");
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Transaction trans = session.beginTransaction();
+			CriteriaQuery<Serie> q = session.getCriteriaBuilder().createQuery(Serie.class);
+			q.select(q.from(Serie.class));
+			TypedQuery<Serie> query = session.createQuery(q);
+			List<Serie> result = query.getResultList();
+			trans.commit();
+			if (result == null) {
+				log.debug("get successful, no elements found");
+			} else {
+				log.debug("get successful, elements found");
+			}
+			return result;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+
 	public Serie findById(int id) {
 		log.debug("getting Serie instance with id: " + id);
 		try {
@@ -128,15 +168,15 @@ public class SerieHome {
 			throw re;
 		}
 	}
-
+	@Deprecated
 	public List<?> findByExample(Serie instance) {
 		log.debug("finding Serie instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			CriteriaQuery<Serie> q= session.getCriteriaBuilder().createQuery(Serie.class);
+			CriteriaQuery<Serie> q = session.getCriteriaBuilder().createQuery(Serie.class);
 			q.select(q.from(Serie.class));
-			TypedQuery<Serie> query =session.createQuery(q);
+			TypedQuery<Serie> query = session.createQuery(q);
 			List<Serie> results = query.getResultList();
 			trans.commit();
 			log.debug("find by example successful, result size: " + results.size());

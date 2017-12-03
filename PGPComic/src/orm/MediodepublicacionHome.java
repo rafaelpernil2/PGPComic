@@ -109,7 +109,49 @@ public class MediodepublicacionHome {
 			throw re;
 		}
 	}
+	
+	
+	public void deleteAll() {
+		log.debug("getting list of Mediodepublicacions");
+		try {
 
+			List<Mediodepublicacion> list = this.list();
+			for (Mediodepublicacion Mediodepublicacion : list) {
+				this.delete(Mediodepublicacion);
+			}
+			if (this.list().isEmpty()) {
+				log.debug("everything deleted succesfully");
+			} else {
+				log.debug("there are some elements not deleted");
+			}
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+
+	public List<Mediodepublicacion> list() {
+		log.debug("getting list of Mediodepublicacions");
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Transaction trans = session.beginTransaction();
+			CriteriaQuery<Mediodepublicacion> q = session.getCriteriaBuilder().createQuery(Mediodepublicacion.class);
+			q.select(q.from(Mediodepublicacion.class));
+			TypedQuery<Mediodepublicacion> query = session.createQuery(q);
+			List<Mediodepublicacion> result = query.getResultList();
+			trans.commit();
+			if (result == null) {
+				log.debug("get successful, no elements found");
+			} else {
+				log.debug("get successful, elements found");
+			}
+			return result;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	
 	public Mediodepublicacion findById(int id) {
 		log.debug("getting Mediodepublicacion instance with id: " + id);
 		try {
@@ -128,7 +170,7 @@ public class MediodepublicacionHome {
 			throw re;
 		}
 	}
-
+	@Deprecated
 	public List<?> findByExample(Mediodepublicacion instance) {
 		log.debug("finding Mediodepublicacion instance by example");
 		try {

@@ -1,6 +1,5 @@
 package orm;
 
-
 // Fixed by Rafael Pernil Bronchalo
 
 import java.util.List;
@@ -110,6 +109,46 @@ public class ComicHome {
 		}
 	}
 
+	public void deleteAll() {
+		log.debug("getting list of Comics");
+		try {
+			List<Comic> list = this.list();
+			for (Comic comic : list) {
+				this.delete(comic);
+			}
+			if (this.list().isEmpty()) {
+				log.debug("everything deleted succesfully");
+			} else {
+				log.debug("there are some elements not deleted");
+			}
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+
+	public List<Comic> list() {
+		log.debug("getting list of Comics");
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Transaction trans = session.beginTransaction();
+			CriteriaQuery<Comic> q = session.getCriteriaBuilder().createQuery(Comic.class);
+			q.select(q.from(Comic.class));
+			TypedQuery<Comic> query = session.createQuery(q);
+			List<Comic> result = query.getResultList();
+			trans.commit();
+			if (result == null) {
+				log.debug("get successful, no elements found");
+			} else {
+				log.debug("get successful, elements found");
+			}
+			return result;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+
 	public Comic findById(ComicId id) {
 		log.debug("getting Comic instance with id: " + id);
 		try {
@@ -128,15 +167,15 @@ public class ComicHome {
 			throw re;
 		}
 	}
-
+	@Deprecated
 	public List<?> findByExample(Comic instance) {
 		log.debug("finding Comic instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
-			CriteriaQuery<Comic> q= session.getCriteriaBuilder().createQuery(Comic.class);
-			q.select(q.from(Comic.class));
-			TypedQuery<Comic> query =session.createQuery(q);
+			CriteriaQuery<Comic> q = session.getCriteriaBuilder().createQuery(Comic.class);
+			q.select(q.from(instance.getClass()));
+			TypedQuery<Comic> query = session.createQuery(q);
 			List<Comic> results = query.getResultList();
 			trans.commit();
 			log.debug("find by example successful, result size: " + results.size());
