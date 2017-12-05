@@ -86,5 +86,9 @@ public class Serie implements java.io.Serializable {
 	public void setMediodepublicacions(Set<Mediodepublicacion> mediodepublicacions) {
 		this.mediodepublicacions = mediodepublicacions;
 	}
+	public String toString() {
+		
+		return " Serie:" + nombre + " Genero:" + genero; 
+	}
 
 }

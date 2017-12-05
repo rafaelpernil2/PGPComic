@@ -31,6 +31,7 @@ public class PublicacionHome {
 		try {
 			// Create the SessionFactory from hibernate.cfg.xml
 			sessionFactory = new Configuration().configure().buildSessionFactory();
+
 			return sessionFactory;
 		} catch (Throwable ex) {
 			// Make sure you log the exception, as it might be swallowed

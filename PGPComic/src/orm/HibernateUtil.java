@@ -74,7 +74,11 @@ public class HibernateUtil {
 			props.put("hibernate.connection.username", "root");
 			props.put("hibernate.connection.password", "root");
 			props.put("hibernate.current_session_context_class", "thread");
-
+			props.put("hibernate.enable_lazy_load_no_trans", "true");
+			props.put("hibernate.bytecode.use_reflection_optimizer", "false");
+			props.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+			props.put("hibernate.search.autoregister_listeners", "true");
+			props.put("hibernate.valdiator.apply_to_ddl", "false");
 			configuration.setProperties(props);
 
 			// we can set mapping file or class with annotation

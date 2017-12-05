@@ -85,7 +85,12 @@ public class SerieHome {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction trans = session.beginTransaction();
+//			Object persistent = session.load(Serie.class,persistentInstance.getIdserie());
+//			if (persistentInstance != null) {
+//			    session.delete(persistent);
+//			}
 			session.delete(persistentInstance);
+//			session.remove(persistentInstance);
 			trans.commit();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
@@ -186,4 +191,17 @@ public class SerieHome {
 			throw re;
 		}
 	}
+	/* Función que devuelve la maxima ID almacenada en la tabla. */
+	public int getMaxID() {
+		int res = 0; 
+		
+		for(Serie s : list()) {
+			if(s.getIdserie() > res) {
+				res = s.getIdserie(); 
+			}
+		}
+		
+		return res; 
+	}
+	
 }

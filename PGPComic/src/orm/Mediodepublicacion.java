@@ -9,9 +9,7 @@ import java.util.Set;
  */
 public class Mediodepublicacion implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private Set<Publicacion> publicacions = new HashSet<Publicacion>(0);
@@ -53,5 +51,33 @@ public class Mediodepublicacion implements java.io.Serializable {
 	public void setSeries(Set<Serie> series) {
 		this.series = series;
 	}
+	public String toString() {
+		return nombre; 
+	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mediodepublicacion other = (Mediodepublicacion) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+	
 }

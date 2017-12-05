@@ -152,7 +152,7 @@ public class MediodepublicacionHome {
 		}
 	}
 	
-	public Mediodepublicacion findById(int id) {
+	public Mediodepublicacion findById(String id) {
 		log.debug("getting Mediodepublicacion instance with id: " + id);
 		try {
 			Session session = sessionFactory.getCurrentSession();
