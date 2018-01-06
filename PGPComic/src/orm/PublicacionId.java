@@ -1,5 +1,5 @@
 package orm;
-// Generated 02-dic-2017 22:16:46 by Hibernate Tools 5.2.3.Final
+// Generated 06-ene-2018 11:57:57 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 
@@ -8,22 +8,16 @@ import java.util.Date;
  */
 public class PublicacionId implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Date fecha;
 	private int comicIdComic;
-	private int comicSerieIdserie;
 	private String medioDePublicacionNombre;
 
 	public PublicacionId() {
 	}
 
-	public PublicacionId(Date fecha, int comicIdComic, int comicSerieIdserie, String medioDePublicacionNombre) {
+	public PublicacionId(Date fecha, int comicIdComic, String medioDePublicacionNombre) {
 		this.fecha = fecha;
 		this.comicIdComic = comicIdComic;
-		this.comicSerieIdserie = comicSerieIdserie;
 		this.medioDePublicacionNombre = medioDePublicacionNombre;
 	}
 
@@ -41,14 +35,6 @@ public class PublicacionId implements java.io.Serializable {
 
 	public void setComicIdComic(int comicIdComic) {
 		this.comicIdComic = comicIdComic;
-	}
-
-	public int getComicSerieIdserie() {
-		return this.comicSerieIdserie;
-	}
-
-	public void setComicSerieIdserie(int comicSerieIdserie) {
-		this.comicSerieIdserie = comicSerieIdserie;
 	}
 
 	public String getMedioDePublicacionNombre() {
@@ -71,7 +57,6 @@ public class PublicacionId implements java.io.Serializable {
 		return ((this.getFecha() == castOther.getFecha()) || (this.getFecha() != null && castOther.getFecha() != null
 				&& this.getFecha().equals(castOther.getFecha())))
 				&& (this.getComicIdComic() == castOther.getComicIdComic())
-				&& (this.getComicSerieIdserie() == castOther.getComicSerieIdserie())
 				&& ((this.getMedioDePublicacionNombre() == castOther.getMedioDePublicacionNombre())
 						|| (this.getMedioDePublicacionNombre() != null
 								&& castOther.getMedioDePublicacionNombre() != null
@@ -83,7 +68,6 @@ public class PublicacionId implements java.io.Serializable {
 
 		result = 37 * result + (getFecha() == null ? 0 : this.getFecha().hashCode());
 		result = 37 * result + this.getComicIdComic();
-		result = 37 * result + this.getComicSerieIdserie();
 		result = 37 * result
 				+ (getMedioDePublicacionNombre() == null ? 0 : this.getMedioDePublicacionNombre().hashCode());
 		return result;

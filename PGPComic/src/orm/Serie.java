@@ -1,5 +1,5 @@
 package orm;
-// Generated 02-dic-2017 22:16:46 by Hibernate Tools 5.2.3.Final
+// Generated 06-ene-2018 11:57:57 by Hibernate Tools 5.2.3.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,16 +9,12 @@ import java.util.Set;
  */
 public class Serie implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int idserie;
 	private String nombre;
-	private String anotacionPublica;
+	private String anotacionPrivada;
 	private String genero;
-	private Set<Comic> comics = new HashSet<Comic>(0);
 	private Set<Mediodepublicacion> mediodepublicacions = new HashSet<Mediodepublicacion>(0);
+	private Set<ComicHasSerie> comicHasSeries = new HashSet<ComicHasSerie>(0);
 
 	public Serie() {
 	}
@@ -29,14 +25,19 @@ public class Serie implements java.io.Serializable {
 		this.genero = genero;
 	}
 
-	public Serie(int idserie, String nombre, String anotacionPublica, String genero, Set<Comic> comics,
-			Set<Mediodepublicacion> mediodepublicacions) {
+	public Serie(int idserie, String nombre, String anotacionPrivada, String genero,
+			Set<Mediodepublicacion> mediodepublicacions, Set<ComicHasSerie> comicHasSeries) {
 		this.idserie = idserie;
 		this.nombre = nombre;
-		this.anotacionPublica = anotacionPublica;
+		this.anotacionPrivada = anotacionPrivada;
 		this.genero = genero;
-		this.comics = comics;
 		this.mediodepublicacions = mediodepublicacions;
+		this.comicHasSeries = comicHasSeries;
+	}
+
+	public String toString() {
+
+		return " Serie:" + nombre + " Genero:" + genero;
 	}
 
 	public int getIdserie() {
@@ -55,12 +56,12 @@ public class Serie implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getAnotacionPublica() {
-		return this.anotacionPublica;
+	public String getAnotacionPrivada() {
+		return this.anotacionPrivada;
 	}
 
-	public void setAnotacionPublica(String anotacionPublica) {
-		this.anotacionPublica = anotacionPublica;
+	public void setAnotacionPrivada(String anotacionPrivada) {
+		this.anotacionPrivada = anotacionPrivada;
 	}
 
 	public String getGenero() {
@@ -71,14 +72,6 @@ public class Serie implements java.io.Serializable {
 		this.genero = genero;
 	}
 
-	public Set<Comic> getComics() {
-		return this.comics;
-	}
-
-	public void setComics(Set<Comic> comics) {
-		this.comics = comics;
-	}
-
 	public Set<Mediodepublicacion> getMediodepublicacions() {
 		return this.mediodepublicacions;
 	}
@@ -86,9 +79,13 @@ public class Serie implements java.io.Serializable {
 	public void setMediodepublicacions(Set<Mediodepublicacion> mediodepublicacions) {
 		this.mediodepublicacions = mediodepublicacions;
 	}
-	public String toString() {
-		
-		return " Serie:" + nombre + " Genero:" + genero; 
+
+	public Set<ComicHasSerie> getComicHasSeries() {
+		return this.comicHasSeries;
+	}
+
+	public void setComicHasSeries(Set<ComicHasSerie> comicHasSeries) {
+		this.comicHasSeries = comicHasSeries;
 	}
 
 }

@@ -1,5 +1,5 @@
 package orm;
-// Generated 02-dic-2017 22:16:46 by Hibernate Tools 5.2.3.Final
+// Generated 06-ene-2018 11:57:57 by Hibernate Tools 5.2.3.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,52 +9,39 @@ import java.util.Set;
  */
 public class Comic implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private ComicId id;
-	private Serie serie;
+	private int idComic;
 	private String nombre;
-	private byte[] crossover;
 	private Integer isbn;
 	private byte[] foto;
+	private String anotacionPrivada;
+	private Set<ComicHasSerie> comicHasSeries = new HashSet<ComicHasSerie>(0);
 	private Set<Publicacion> publicacions = new HashSet<Publicacion>(0);
 
 	public Comic() {
 	}
 
-	public Comic(ComicId id, Serie serie, String nombre) {
-		this.id = id;
-		this.serie = serie;
+	public Comic(int idComic, String nombre) {
+		this.idComic = idComic;
 		this.nombre = nombre;
 	}
 
-	public Comic(ComicId id, Serie serie, String nombre, byte[] crossover, Integer isbn, byte[] foto,
+	public Comic(int idComic, String nombre, Integer isbn, byte[] foto, String anotacionPrivada, Set<ComicHasSerie> comicHasSeries,
 			Set<Publicacion> publicacions) {
-		this.id = id;
-		this.serie = serie;
+		this.idComic = idComic;
 		this.nombre = nombre;
-		this.crossover = crossover;
 		this.isbn = isbn;
 		this.foto = foto;
+		this.anotacionPrivada = anotacionPrivada;
+		this.comicHasSeries = comicHasSeries;
 		this.publicacions = publicacions;
 	}
 
-	public ComicId getId() {
-		return this.id;
+	public int getIdComic() {
+		return this.idComic;
 	}
 
-	public void setId(ComicId id) {
-		this.id = id;
-	}
-
-	public Serie getSerie() {
-		return this.serie;
-	}
-
-	public void setSerie(Serie serie) {
-		this.serie = serie;
+	public void setIdComic(int idComic) {
+		this.idComic = idComic;
 	}
 
 	public String getNombre() {
@@ -63,14 +50,6 @@ public class Comic implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public byte[] getCrossover() {
-		return this.crossover;
-	}
-
-	public void setCrossover(byte[] crossover) {
-		this.crossover = crossover;
 	}
 
 	public Integer getIsbn() {
@@ -87,6 +66,22 @@ public class Comic implements java.io.Serializable {
 
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
+	}
+
+	public String getAnotacionPrivada() {
+		return this.anotacionPrivada;
+	}
+
+	public void setAnotacionPrivada(String anotacionPrivada) {
+		this.anotacionPrivada = anotacionPrivada;
+	}
+
+	public Set<ComicHasSerie> getComicHasSeries() {
+		return this.comicHasSeries;
+	}
+
+	public void setComicHasSeries(Set<ComicHasSerie> comicHasSeries) {
+		this.comicHasSeries = comicHasSeries;
 	}
 
 	public Set<Publicacion> getPublicacions() {

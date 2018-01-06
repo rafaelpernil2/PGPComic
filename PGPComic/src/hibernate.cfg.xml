@@ -14,6 +14,7 @@
         <property name="hibernate.validator.apply_to_ddl">false</property>
         <mapping resource="orm/Publicacion.hbm.xml"/>
         <mapping resource="orm/Serie.hbm.xml"/>
+        <mapping resource="orm/ComicHasSerie.hbm.xml"/>
         <mapping resource="orm/Comic.hbm.xml"/>
         <mapping resource="orm/Mediodepublicacion.hbm.xml"/>
     </session-factory>

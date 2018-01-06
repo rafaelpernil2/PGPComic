@@ -1,5 +1,5 @@
 package orm;
-// Generated 02-dic-2017 22:16:46 by Hibernate Tools 5.2.3.Final
+// Generated 06-ene-2018 11:57:57 by Hibernate Tools 5.2.3.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +9,9 @@ import java.util.Set;
  */
 public class Mediodepublicacion implements java.io.Serializable {
 
-	
-	private static final long serialVersionUID = 1L;
 	private String nombre;
-	private Set<Publicacion> publicacions = new HashSet<Publicacion>(0);
-	private Set<Serie> series = new HashSet<Serie>(0);
+	private Set publicacions = new HashSet(0);
+	private Set series = new HashSet(0);
 
 	public Mediodepublicacion() {
 	}
@@ -22,7 +20,7 @@ public class Mediodepublicacion implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	public Mediodepublicacion(String nombre, Set<Publicacion> publicacions, Set<Serie> series) {
+	public Mediodepublicacion(String nombre, Set publicacions, Set series) {
 		this.nombre = nombre;
 		this.publicacions = publicacions;
 		this.series = series;
@@ -44,7 +42,7 @@ public class Mediodepublicacion implements java.io.Serializable {
 		this.publicacions = publicacions;
 	}
 
-	public Set<Serie> getSeries() {
+	public Set getSeries() {
 		return this.series;
 	}
 
@@ -79,5 +77,4 @@ public class Mediodepublicacion implements java.io.Serializable {
 			return false;
 		return true;
 	}
-	
 }
