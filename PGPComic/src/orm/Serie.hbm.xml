@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 06-ene-2018 11:57:57 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mydb" dynamic-insert="false" dynamic-update="false" mutable="true" name="orm.Serie" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="serie">
+        <id name="idserie" type="int">
+            <column name="idserie"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="60" name="nombre" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="anotacionPrivada" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="anotacionPrivada"/>
+        </property>
+        <property generated="never" lazy="false" name="genero" optimistic-lock="true" type="string" unique="false">
+            <column length="60" name="genero" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="false" lazy="true" mutable="true" name="mediodepublicacions" optimistic-lock="true" sort="unsorted" table="serie_has_mediodepublicacion">
+            <key on-delete="noaction">
+                <column name="serie_idserie" not-null="true"/>
+            </key>
+            <many-to-many embed-xml="true" entity-name="orm.Mediodepublicacion" not-found="exception" unique="false">
+                <column length="60" name="medioDePublicacion_nombre" not-null="true"/>
+            </many-to-many>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="comicHasSeries" optimistic-lock="true" sort="unsorted" table="comic_has_serie">
+            <key on-delete="noaction">
+                <column name="serie_idserie" not-null="true"/>
+            </key>
+            <one-to-many class="orm.ComicHasSerie" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 06-ene-2018 11:57:57 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mydb" dynamic-insert="false" dynamic-update="false" mutable="true" name="orm.Publicacion" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="publicacion">
+        <composite-id class="orm.PublicacionId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="fecha" type="timestamp">
+                <column length="19" name="fecha"/>
+            </key-property>
+            <key-property name="comicIdComic" type="int">
+                <column name="comic_idComic"/>
+            </key-property>
+            <key-property name="medioDePublicacionNombre" type="string">
+                <column length="60" name="medioDePublicacion_nombre"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="orm.Comic" embed-xml="true" fetch="select" insert="false" name="comic" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="comic_idComic" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="orm.Mediodepublicacion" embed-xml="true" fetch="select" insert="false" name="mediodepublicacion" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column length="60" name="medioDePublicacion_nombre" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="entregado" optimistic-lock="true" type="java.lang.Boolean" unique="false">
+            <column name="entregado"/>
+        </property>
+    </class>
+</hibernate-mapping>

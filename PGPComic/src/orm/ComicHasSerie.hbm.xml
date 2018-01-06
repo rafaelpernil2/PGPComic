@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 06-ene-2018 11:57:57 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mydb" dynamic-insert="false" dynamic-update="false" mutable="true" name="orm.ComicHasSerie" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="comic_has_serie">
+        <composite-id class="orm.ComicHasSerieId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="comicIdComic" type="int">
+                <column name="comic_idComic"/>
+            </key-property>
+            <key-property name="serieIdserie" type="int">
+                <column name="serie_idserie"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="orm.Comic" embed-xml="true" fetch="select" insert="false" name="comic" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="comic_idComic" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="orm.Serie" embed-xml="true" fetch="select" insert="false" name="serie" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="serie_idserie" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="anotacionPublica" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="anotacionPublica"/>
+        </property>
+    </class>
+</hibernate-mapping>
