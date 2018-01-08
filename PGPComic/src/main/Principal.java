@@ -1,11 +1,11 @@
 package main;
 
-import interfaz.AdministrarSerieView;
+import interfaz.AdministrarAppView;
 
 public class Principal {
 
 	public static void main(String[] args) {
-		AdministrarSerieView.main(args);	
+		AdministrarAppView.main(args);	
 	}
 
 }

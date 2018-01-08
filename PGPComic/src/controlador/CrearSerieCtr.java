@@ -29,7 +29,7 @@ public class CrearSerieCtr implements ActionListener {
 			vista.getSerieManager().attachClean(s);
 			vista.cerrarVentana();
 			vistaSerie.cargaSeries();
-			vistaSerie.volverASeleccionar(id);
+//			vistaSerie.volverASeleccionar(id);
 			vistaSerie.muestraMedio(s);
 			break;
 		case "CANCELAR":

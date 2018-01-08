@@ -91,5 +91,9 @@ public class Comic implements java.io.Serializable {
 	public void setPublicacions(Set<Publicacion> publicacions) {
 		this.publicacions = publicacions;
 	}
+	public String toString() {
+		
+		return this.getNombre() +"    " + this.getIsbn();
+	}
 
 }

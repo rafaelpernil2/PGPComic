@@ -185,4 +185,16 @@ public class ComicHome {
 			throw re;
 		}
 	}
+	
+	public int getMaxID() {
+		int res = 0; 
+		
+		for(Comic c : list()) {
+			if(c.getIdComic() > res) {
+				res = c.getIdComic(); 
+			}
+		}
+		
+		return res; 
+	}
 }

@@ -72,9 +72,9 @@ public class ModificarSerieView {
 		medMag = new MediodepublicacionHome();
 
 		frame = new JFrame();
-		frame.setTitle("Modificación de serie");
+		frame.setTitle("Modificaciï¿½n de serie");
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panelFormulario = new JPanel();

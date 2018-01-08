@@ -14,14 +14,12 @@ public class ModificarSerieCtr implements ActionListener {
 	AdministrarSerieView vistaSerie;
 	
 	public ModificarSerieCtr(ModificarSerieView modificarSerieView, AdministrarSerieView vistaSerie) {
-		// TODO Auto-generated constructor stub
 		vistaMod = modificarSerieView;
 		this.vistaSerie = vistaSerie;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		switch (cmd) {
 		case "CREAR":
@@ -29,7 +27,7 @@ public class ModificarSerieCtr implements ActionListener {
 			vistaMod.getSerieManager().attachDirty(s);
 			vistaMod.cerrarVentana();
 			vistaSerie.cargaSeries();
-			vistaSerie.volverASeleccionar(vistaSerie.getCurrentIndex());
+//			vistaSerie.volverASeleccionar(vistaSerie.getCurrentIndex());
 			vistaMod.muestraMedio(s);
 			break;
 		case "CANCELAR":

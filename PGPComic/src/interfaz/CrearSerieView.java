@@ -68,9 +68,9 @@ public class CrearSerieView {
 		medMag = new MediodepublicacionHome();
 
 		frame = new JFrame();
-		frame.setTitle("Creación de serie");
+		frame.setTitle("Creaciï¿½n de serie");
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panelFormulario = new JPanel();

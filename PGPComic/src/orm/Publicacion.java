@@ -58,5 +58,9 @@ public class Publicacion implements java.io.Serializable {
 	public void setEntregado(Boolean entregado) {
 		this.entregado = entregado;
 	}
+	
+	public String toString() {
+		return this.getId().getFecha().toString(); 
+	}
 
 }

@@ -19,6 +19,7 @@ public class AdministrarSerieListaCtr implements ListSelectionListener {
 	public void valueChanged(ListSelectionEvent e) {
 		JList<?> lista = (JList<?>) e.getSource();
 		if (!lista.isSelectionEmpty()) {
+			vista.activarEliminar();
 			System.out.println("Se ha detectado un cambio" + vista.serieSeleccionada().toString());
 			Object o = lista.getSelectedValue();
 

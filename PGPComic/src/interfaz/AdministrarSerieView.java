@@ -61,7 +61,7 @@ public class AdministrarSerieView {
 		frmAdministracionDeSerie = new JFrame();
 		frmAdministracionDeSerie.setTitle("Administracion de Serie");
 		frmAdministracionDeSerie.setBounds(100, 100, 450, 300);
-		frmAdministracionDeSerie.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAdministracionDeSerie.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmAdministracionDeSerie.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
@@ -76,6 +76,7 @@ public class AdministrarSerieView {
 		bModificarSerie.setActionCommand("MODIFICAR");
 		bEliminarSerie = new JButton("Eliminar Serie");
 		panel.add(bEliminarSerie);
+		bEliminarSerie.setEnabled(false);
 		bEliminarSerie.setActionCommand("ELIMINAR");
 		JPanel panel_1 = new JPanel();
 
@@ -96,6 +97,7 @@ public class AdministrarSerieView {
 
 		AdministrarSerieListaCtr ctrl = new AdministrarSerieListaCtr(this);
 		listaSerie.addListSelectionListener(ctrl);
+		
 		AdministrarSerieCtr ctr = new AdministrarSerieCtr(this);
 		ControladorAction(ctr);
 		cargaSeries();
@@ -109,6 +111,7 @@ public class AdministrarSerieView {
 
 	public void deseleccionar() {
 		listaSerie.clearSelection();
+		bEliminarSerie.setEnabled(false);
 	}
 	public void volverASeleccionar(int index){
 		listaSerie.setSelectedIndex(index);
@@ -123,14 +126,6 @@ public class AdministrarSerieView {
 			modeloSerie.addElement(s);
 		}
 	}
-
-	public void muestraMedio(Serie s) {
-		modeloMedio.clear();
-		for (Mediodepublicacion m : s.getMediodepublicacions()) {
-			if (!m.equals(null))
-				modeloMedio.addElement(m);
-		}
-	}
 	public Serie serieSeleccionada() {
 		return listaSerie.getSelectedValue();
 	}
@@ -138,6 +133,17 @@ public class AdministrarSerieView {
 	public SerieHome getSerieManager() {
 		return serieManager;
 	}
+	public void activarEliminar(){
+		bEliminarSerie.setEnabled(true);
+	}
+	public void muestraMedio(Serie s) {
+		modeloMedio.clear();
+		for (Mediodepublicacion m : s.getMediodepublicacions()) {
+			if (!m.equals(null))
+				modeloMedio.addElement(m);
+		}
+	}
+	
 
 	public void limpiaMedios() {
 		modeloMedio.clear();
